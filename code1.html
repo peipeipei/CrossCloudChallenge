@@ -21,18 +21,43 @@
     $(document).ready(function(){
         $("#getSchedule").click(function () {
             var toLoad = $('#input').val();
-            loadXMLDoc(toLoad);
-            
-        })
+            //loadXMLDoc(toLoad);
+            var toOpen = toLoad + ".json";
+            var myJsonObj = $.getJSON(toOpen, function(data){
+                console.log(data);
+                $('#addthings').empty();
+                $('#addthings').append("<table>");
+                for (var ii=0; ii<data.items.length;ii++){
+                    $('#addthings').append("<tr><td>" + data.items[ii].description + "</td><td>" + data.items[ii].done + "</td></tr>");
+                }
+                $('#addthings').append("</table>");
+
+            });
+            console.log(myJsonObj);
+        });
     });
   
     
 </script>
     
+    
+<style>
+table{
+    width: 100%;
+}
+td{
+    padding:1%;
+}
+    
+</style>
+
+    
+    
 </head>
 <body>
 
 <div id="question"><h2>What schedule do you want?</h2></div>
+<div id="addthings"></div>
 <input type="text" id="input">
 <button type="button" id="getSchedule">Get Schedule!</button>
 
