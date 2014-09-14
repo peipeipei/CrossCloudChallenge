@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    
+<script>
+    function loadXMLDoc(input){
+        var xmlhttp=new XMLHttpRequest();
+        xmlhttp.onreadystatechange=function(){
+            if (xmlhttp.readyState==4 && xmlhttp.status==200){
+                document.getElementById("question").innerHTML=xmlhttp.responseText;
+            }
+        }
+        var toOpen = input + ".json";
+        xmlhttp.open("GET",toOpen,true);
+        xmlhttp.send();
+    }
+    
+    $(document).ready(function(){
+        $("#getSchedule").click(function () {
+            var toLoad = $('#input').val();
+            loadXMLDoc(toLoad);
+            
+        })
+    });
+  
+    
+</script>
+    
+</head>
+<body>
+
+<div id="question"><h2>What schedule do you want?</h2></div>
+<input type="text" id="input">
+<button type="button" id="getSchedule">Get Schedule!</button>
+
+</body>
+</html>
