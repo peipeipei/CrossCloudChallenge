@@ -27,8 +27,9 @@
             }
         }
         xmlhttp.setRequestHeader;
-        var toLoad = $('#input').val();
-        var toOpen = toLoad + ".json";
+        //var toLoad = $('#input').val();
+        //var toOpen = toLoad + ".json";
+        var toOpen = $('#input').val();
         xmlhttp.open("GET",toOpen,true);
         xmlhttp.send();
     }
